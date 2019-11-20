@@ -6,8 +6,8 @@ import random
 
 
 def generate_data(num, data):
-    for i in range(1, num+1):
-        item = i*i
+    for i in range(1, num + 1):
+        item = i * i
         data.append((item, datetime.datetime.now()))
 
         print(colorama.Fore.YELLOW + "-- generated item {}".format(i), flush=True)
@@ -24,8 +24,13 @@ def process_data(num, data):
         processed += 1
         value = item[0]
         t = item[1]
-        dt = datetime.datetime.now()-t
-        print(colorama.Fore.CYAN + "++ Processed value {} after {:,.2f} sec".format(value, dt.total_seconds()))
+        dt = datetime.datetime.now() - t
+        print(
+            colorama.Fore.CYAN
+            + "++ Processed value {} after {:,.2f} sec".format(
+                value, dt.total_seconds()
+            )
+        )
         time.sleep(0.5)
 
 
@@ -38,8 +43,10 @@ def main():
     process_data(15, data)
 
     dt = datetime.datetime.now() - t0
-    print(colorama.Fore.WHITE + "App exiting, total time: {} sec".format(dt.total_seconds()))
-
+    print(
+        colorama.Fore.WHITE
+        + "App exiting, total time: {} sec".format(dt.total_seconds())
+    )
 
 
 if __name__ == "__main__":

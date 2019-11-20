@@ -5,6 +5,7 @@ import asyncio
 
 # this example is the same as "AsyncronousExample" but using TRIO library. Results the same.
 
+
 async def generate_data(num, data):
     for i in range(1, num + 1):
         item = i * i
@@ -22,7 +23,12 @@ async def process_data(num, data):
         value = item[0]
         t = item[1]
         dt = datetime.datetime.now() - t
-        print(colorama.Fore.CYAN + "++ Processed value {} after {:,.2f} sec".format(value, dt.total_seconds()))
+        print(
+            colorama.Fore.CYAN
+            + "++ Processed value {} after {:,.2f} sec".format(
+                value, dt.total_seconds()
+            )
+        )
         await trio.sleep(0.5)
 
 
@@ -37,7 +43,10 @@ async def main():
         nursery.start_soon(process_data, 20, data, name="consumer 1")
 
     dt = datetime.datetime.now() - t0
-    print(colorama.Fore.WHITE, "App exiting, total time: {:,.2f} sec.".format(dt.total_seconds()))
+    print(
+        colorama.Fore.WHITE,
+        "App exiting, total time: {:,.2f} sec.".format(dt.total_seconds()),
+    )
 
 
 if __name__ == "__main__":

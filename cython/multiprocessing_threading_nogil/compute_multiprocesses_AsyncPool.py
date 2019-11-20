@@ -14,7 +14,6 @@ def do_math(start=0, num=10):
     return int(average)
 
 
-
 def main():
     do_math(1)
     t0 = datetime.datetime.now()
@@ -24,8 +23,10 @@ def main():
     pool = multiprocessing.Pool()
     tasks = []
     for i in range(1, processor_count + 1):
-        task = pool.apply_async(do_math, (30_000_000 * (i - 1) / processor_count,
-                                   30_000_000 * i / processor_count))
+        task = pool.apply_async(
+            do_math,
+            (30_000_000 * (i - 1) / processor_count, 30_000_000 * i / processor_count),
+        )
         tasks.append(task)
 
     pool.close()
@@ -38,5 +39,5 @@ def main():
         print(t.get())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
