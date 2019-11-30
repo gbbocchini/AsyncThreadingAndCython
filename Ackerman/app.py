@@ -18,8 +18,8 @@ def main():
     for i in range(0,5):
         with PoolExecutor(max_workers=multiprocessing.cpu_count()) as executor:
             t0 = datetime.datetime.now()
-            m: cython.int = np.random.randint(0, 6)
-            n: cython.int = np.random.randint(0, 6)
+            m: cython.int = np.random.randint(0, 5)
+            n: cython.int = np.random.randint(0, 5)
             f = executor.submit(ackerman.ack, m, n)
             work.append(f)
             t1 = datetime.datetime.now()
